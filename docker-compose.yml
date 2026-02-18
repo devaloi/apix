@@ -1,0 +1,34 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: apix
+      POSTGRES_PASSWORD: apix
+      POSTGRES_DB: apix
+    ports:
+      - '5432:5432'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U apix']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    ports:
+      - '3000:3000'
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      DATABASE_URL: postgresql://apix:apix@db:5432/apix?schema=public
+      JWT_SECRET: change-me-to-a-random-secret
+      JWT_EXPIRES_IN: 7d
+      BCRYPT_ROUNDS: 10
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:
