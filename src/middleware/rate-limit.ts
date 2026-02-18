@@ -4,6 +4,9 @@ interface WindowEntry {
   timestamps: number[];
 }
 
+// NOTE: This in-memory store is per-process.  In a multi-instance deployment
+// (e.g. behind a load balancer), replace with a shared store such as Redis to
+// enforce rate limits consistently across all instances.
 const store = new Map<string, WindowEntry>();
 
 export function rateLimit(windowMs?: number, maxRequests?: number) {

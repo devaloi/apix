@@ -1,11 +1,12 @@
 import { prisma } from '../../lib/prisma';
 import { NotFoundError, ConflictError } from '../../lib/errors';
+import { USER_SELECT_PROFILE } from '../../lib/constants';
 import { UpdateUserInput } from './user.schemas';
 
 export async function getProfile(userId: string) {
   const user = await prisma.user.findUnique({
     where: { id: userId },
-    select: { id: true, email: true, name: true, createdAt: true, updatedAt: true },
+    select: USER_SELECT_PROFILE,
   });
 
   if (!user) {
@@ -26,7 +27,7 @@ export async function updateProfile(userId: string, input: UpdateUserInput) {
   const user = await prisma.user.update({
     where: { id: userId },
     data: input,
-    select: { id: true, email: true, name: true, createdAt: true, updatedAt: true },
+    select: USER_SELECT_PROFILE,
   });
 
   return user;

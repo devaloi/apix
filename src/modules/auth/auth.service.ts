@@ -2,6 +2,7 @@ import { prisma } from '../../lib/prisma';
 import { hashPassword, comparePassword } from '../../lib/password';
 import { signToken } from '../../lib/jwt';
 import { ConflictError, UnauthorizedError } from '../../lib/errors';
+import { USER_SELECT_BASE } from '../../lib/constants';
 import { RegisterInput, LoginInput } from './auth.schemas';
 
 export async function register(input: RegisterInput): Promise<{ token: string; user: { id: string; email: string; name: string } }> {
@@ -17,7 +18,7 @@ export async function register(input: RegisterInput): Promise<{ token: string; u
       name: input.name,
       passwordHash,
     },
-    select: { id: true, email: true, name: true },
+    select: USER_SELECT_BASE,
   });
 
   const token = signToken(user.id);

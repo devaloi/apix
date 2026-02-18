@@ -3,19 +3,20 @@ import * as authController from './auth.controller';
 import { validate } from '../../middleware/validate';
 import { registerSchema, loginSchema } from './auth.schemas';
 import { rateLimit } from '../../middleware/rate-limit';
+import { AUTH_RATE_LIMITS } from '../../lib/constants';
 
 const router = Router();
 
 router.post(
   '/register',
-  rateLimit(60000, 10),
+  rateLimit(AUTH_RATE_LIMITS.register.windowMs, AUTH_RATE_LIMITS.register.max),
   validate({ body: registerSchema }),
   authController.register,
 );
 
 router.post(
   '/login',
-  rateLimit(60000, 20),
+  rateLimit(AUTH_RATE_LIMITS.login.windowMs, AUTH_RATE_LIMITS.login.max),
   validate({ body: loginSchema }),
   authController.login,
 );
