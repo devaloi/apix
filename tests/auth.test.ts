@@ -1,5 +1,5 @@
 import request from 'supertest';
-import { buildApp, getAuthHeader, mockUser, mockPost } from './helpers';
+import { buildApp, getAuthHeader, mockUser } from './helpers';
 import { clearRateLimitStore } from '../src/middleware/rate-limit';
 
 // Mock Prisma

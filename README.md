@@ -1,5 +1,6 @@
 # apix
 
+[![CI](https://github.com/devaloi/apix/actions/workflows/ci.yml/badge.svg)](https://github.com/devaloi/apix/actions/workflows/ci.yml)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?logo=typescript)](https://www.typescriptlang.org/)
 [![Express](https://img.shields.io/badge/Express-5.x-000?logo=express)](https://expressjs.com/)
 [![Prisma](https://img.shields.io/badge/Prisma-6.x-2D3748?logo=prisma)](https://www.prisma.io/)
@@ -24,7 +25,7 @@ A production-grade REST API built with **Express 5**, **Prisma ORM**, **PostgreS
 ### With Docker (recommended)
 
 ```bash
-git clone https://github.com/youruser/apix.git && cd apix
+git clone https://github.com/devaloi/apix.git && cd apix
 docker compose up -d
 # API available at http://localhost:3000
 ```
