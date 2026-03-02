@@ -245,3 +245,7 @@ npm test -- --verbose # Verbose output
 ## License
 
 [MIT](LICENSE)
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md). PRs welcome — run `npm run lint && npm test` before submitting.
